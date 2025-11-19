@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Order Laundry</title>
+</head>
+<body>
+
+    <h2>Form Laundry Order</h2>
+
+    <form id="orderForm">
+        <label>Nama (wajib):</label><br>
+        <input type="text" id="nama" required><br><br>
+
+        <label>Alamat (wajib):</label><br>
+        <input type="text" id="alamat" required><br><br>
+
+        <label>Foto Baju Anda:</label><br>
+        <input type="file" id="foto" accept="image/*" required><br><br>
+
+        <label>Metode Laundry:</label><br>
+
+        <button type="button" onclick="setMethod('Laundry biasa')">Laundry biasa</button>
+        <button type="button" onclick="setMethod('Laundry kilat')">Laundry kilat</button>
+        <button type="button" onclick="setMethod('Setrika kilat')">Setrika kilat</button>
+        <button type="button" onclick="setMethod('Setrika biasa')">Setrika biasa</button>
+        <button type="button" onclick="setMethod('Cuci kering lipat')">Cuci kering lipat</button>
+
+        <p id="metodeTerpilih">Metode terpilih: -</p>
+
+        <br><br>
+        <button type="submit">Kirim Pesanan</button>
+    </form>
+
+    <script src="index.js"></script>
+</body>
+</html>
