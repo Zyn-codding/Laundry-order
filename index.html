@@ -32,6 +32,60 @@
         <button type="submit">Kirim Pesanan</button>
     </form>
 
-    <script src="index.js"></script>
+
+<script>
+// ================================
+//  METODE TERPILIH
+// ================================
+let metode = "";
+
+function setMethod(m) {
+    metode = m;
+    document.getElementById("metodeTerpilih").innerText = "Metode terpilih: " + m;
+}
+
+
+// ================================
+//  KIRIM PESANAN (SIMPAN LOCALSTORAGE)
+// ================================
+document.getElementById("orderForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    if (!metode) {
+        alert("Pilih metode dulu!");
+        return;
+    }
+
+    const nama = document.getElementById("nama").value;
+    const alamat = document.getElementById("alamat").value;
+    const fotoFile = document.getElementById("foto").files[0];
+
+    const reader = new FileReader();
+    reader.onload = function () {
+        const fotoBase64 = reader.result;
+
+        let data = JSON.parse(localStorage.getItem("pesananLaundry") || "[]");
+
+        data.push({
+            nama,
+            alamat,
+            metode,
+            foto: fotoBase64,
+            waktu: new Date().toLocaleString()
+        });
+
+        localStorage.setItem("pesananLaundry", JSON.stringify(data));
+
+        alert("Pesanan berhasil dikirim!");
+
+        document.getElementById("orderForm").reset();
+        metode = "";
+        document.getElementById("metodeTerpilih").innerText = "Metode terpilih: -";
+    };
+
+    reader.readAsDataURL(fotoFile);
+});
+</script>
+
 </body>
 </html>
